@@ -12,13 +12,12 @@ def find_user(email: str):
     return user
 
 
-def create_user(name: str, email: str, company: str, password: str) -> Optional[User]:
+def create_user(name: str, email: str,  password: str) -> Optional[User]:
     if find_user(email):
         return None
     user = User()
     user.name = name
     user.email = email
-    user.company = company
     user.hashed_password = hash_text(password)
     graph.create(user)
     return user
@@ -47,5 +46,5 @@ def login_user(email: str, password: str) -> Optional[User]:
 
 def get_profile(usr: str) -> Optional[User]:
     # user = User.match(graph, f"{usr}").first()
-    user_profile = graph.run(f"MATCH (x:user) WHERE x.email='{usr}' RETURN x.name as name, x.company as company, x.email as email").data()
+    user_profile = graph.run(f"MATCH (x:user) WHERE x.email='{usr}' RETURN x.name as name, x.email as email").data()
     return user_profile

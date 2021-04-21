@@ -1,9 +1,66 @@
 {% extends "shared/_layout.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}Clik Home{% endblock %}
 {% block main_content %}
 
 <div class="page-title">
-    <h1>Home</h1>
+	<body>
+	<div class="container" align="center" style="margin-top=30" id="namecard">
+	<div class="card" style= "left-margin 30%; width: 70%; float: center;">
+	    <img class="card-img-top" src={{img_clik}} alt="Clik" style="float: center"; height="100"; width="100";}>
+    	<div class="card-body">
+    		<h3 class="card-title" align="center">Click</h3>
+			<ul class="listgroup">
+			<li class="list-group-item">
+				<div class="formgroup" action='index.html'>
+				<div class="formtitle">
+					<div class="input nobottomborder">
+						<div class="formgroup">
+						<button type="button" class="btn btn-default"
+					 	id='LoginBtn'>Click to Sign in to Clik</button>
+						</div>
+					</div></div></div>
+			</li>
+			<li class="list-group-item">
+				<div>
+
+					<button type="button" class="btn btn-default"
+					 id='CreateAccountBtn'>Click to Create a Clik Account</button>
+				</div>
+			</li>
+		</ul>
+	</div>
 </div>
+
+
+
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+<script>
+$(document).ready(function(){
+	$('#LoginBtn').click(function(){
+        console.log(status);
+        window.location.href="/accounts/login";
+	});
+});
+
+
+$(document).ready(function(){
+	$('#CreateAccountBtn').click(function(){
+        console.log(status);
+        window.location.href="/accounts/register";
+	});
+});
+</script>
+
+
+</div>
+
 
 {% endblock %}

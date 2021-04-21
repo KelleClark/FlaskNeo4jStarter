@@ -6,7 +6,6 @@ class User(GraphObject):
     __primarykey__ = "email"
     name = Property()
     email = Property()
-    company = Property()
     password = Property()
     hashed_password = Property()
     created_on = Property()
