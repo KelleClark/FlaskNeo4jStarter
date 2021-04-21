@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src='https://cdn.neo4jlabs.com/neovis.js/v1.5.0/neovis.js'></script>
+    <script src="https://rawgit.com/neo4j-contrib/neovis.js/master/dist/neovis.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
@@ -27,13 +28,12 @@
 		}
         .topnav{
             background-color:white;
-         }
+        }
 
 		#logoMessage {
 		  color: #434B63;
 		  text-align: center;
 		}
-
 
 		#namecard {
 			background-color:white;
@@ -47,7 +47,6 @@
 		body {
 			background-color: #C3C3C3;
 		}
-
 
 		#SignUpBtn {
 			background-color: #5386E4;
@@ -70,20 +69,22 @@
 
 		}
 
-    .node { stroke: #222; stroke-width: 1.5px; }
-    .node.Person { fill: #BBB; }
-    .node.Event { fill: #BBB; }
-    .link { stroke: #999; stroke-opacity: .6; stroke-width: 1px; }
+        .node { stroke: #222; stroke-width: 1.5px; }
+        .node.User { fill: #BBB; }
+        .node.Event { fill: #BBB; }
+        .link { stroke: #999; stroke-opacity: .6; stroke-width: 1px; }
 
-     #viz {width:900px;
-        height: 700px;
-        border: 1px solid lightgray
-        font:22pt arial
-        float:right}
+        #viz {
+            width:900px;
+            height: 700px;
+            border: 1px solid lightgray;
+            font:22pt arial;
+            float:right;
+            background-color: #C3C3C3;
+        }
 
-	</style>
 
-
+    </style>
 
     {% block additional_css %}{% endblock %}
 </head>
@@ -111,5 +112,6 @@
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+
 </body>
 </html>

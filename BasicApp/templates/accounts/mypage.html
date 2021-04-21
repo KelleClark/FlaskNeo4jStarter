@@ -1,10 +1,10 @@
 {% extends "shared/_layout.html" %}
-{% block title %}Clik Home{% endblock %}
+{% block title %}Clik User Page{% endblock %}
 {% block main_content %}
    <div class="container">
    	<div class="row">
         <div class="col-md-4">
-            <a href="/index"><h4> Home </h4></a></div>
+            <a href="/"><h4> Home </h4></a></div>
         <div class="col-md-4">
 		    <a class = "active" href="/accounts/mypage"><h4> My Clik</h4></a></div>
         <div class="col-md-4">
@@ -14,7 +14,8 @@
 
     <div class="container-fluid">
 	    <div class='row'>
-		    <div class="col-8" align="right" id="viz" >
+		    <div class="col-8" align="right" onload="draw()">
+				<div id="viz"></div>
     	    </div>
 		    <div class="col-4">
 			    <h2>Cypher query: </h2>
@@ -32,24 +33,50 @@
         draw();
 	});
 
-	</script>
-<script type="text/javascript">
+   </script>
+   <script type="text/javascript">
 		// define config car
-		// instantiate nodevis object
+		// instantiate neovis object
 		// draw
 
 		var viz;
 
 		function draw() {
+			//var config = {
+			//	container_id: "viz",
+			//	server_url: "bolt://localhost:7687",
+			//	server_user: "kelle",
+			//	server_password: "111",
+			//	labels: {
+			//		//"Person": "name",
+			//		"Person": {
+			//			"caption": "first_name",
+			//			"size": "2",
+			//			"community": "10"
+			//			//"sizeCypher": "MATCH (n) WHERE id(n) = {id} MATCH (n)-[r]-() RETURN sum(r.weight) AS c"
+			//		},
+			//		"Event":{
+			//			"caption":"Location",
+			//			"size": "1",
+			//			"community": "5"
+			//		}
+			//	},
+			//	relationships: {
+			//		"interestedIn": {
+			//			"thickness": 1,
+			//			"caption": false
+			//		}
+			//	},
+			//	initial_cypher: "MATCH n=(:Person), m=(:Event),p=(:Person)-[:interestedIn]->(:Event) RETURN n,m,p"
+			//};
 			var config = {
 				container_id: "viz",
 				server_url: "bolt://localhost:7687",
-				server_user: "kelle",
+				server_user: "neo4j",
 				server_password: "111",
 				labels: {
-					//"Person": "name",
-					"Person": {
-						"caption": "first_name",
+					"user": {
+						"caption": "name",
 						"size": "2",
 						"community": "10"
 						//"sizeCypher": "MATCH (n) WHERE id(n) = {id} MATCH (n)-[r]-() RETURN sum(r.weight) AS c"
@@ -66,13 +93,11 @@
 						"caption": false
 					}
 				},
-				initial_cypher: "MATCH n=(:Person), m=(:Event),p=(:Person)-[:interestedIn]->(:Event) RETURN n,m,p"
+				initial_cypher: "MATCH n=(:user), m=(:Event),p=(:User)-[:interestedIn]->(:Event) RETURN n,m,p"
 			};
-
 			viz = new NeoVis.default(config);
 			viz.render();
-			console.log(viz);
-		}
+		};
 </script>
 
 <script>
@@ -88,7 +113,7 @@
 
 	$("#stabilize").click(function() {
 		viz.stabilize();
-	})
+	});
 
 </script>
 {% endblock %}
