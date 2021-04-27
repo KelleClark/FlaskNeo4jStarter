@@ -2,13 +2,20 @@
 {% block title %}Clik User Page{% endblock %}
 {% block main_content %}
    <div class="container">
-   	<div class="row">
-        <div class="col-md-4">
+   	<div class="row" >
+        <div class="col-md-2">
             <a href="/"><h4> Home </h4></a></div>
-        <div class="col-md-4">
-		    <a class = "active" href="/accounts/mypage"><h4> My Clik</h4></a></div>
-        <div class="col-md-4">
+        <div class="col-md-2">
             <a href="/accounts/login"><h4> My Profile</h4></a></div>
+		<div class="col-md-2">
+   		<button type="button" id="AddEventBtn" class="btn btn-primary">Add an Event</button></div>
+		<div class="col-md-2">
+   		<button type="button" id="SeeEventsBtn" class="btn btn-primary">See Events</button></div>
+		<div class="col-md-2">
+		<button type="button" id="AddFriendBtn" class="btn btn-primary" >Add a Friend</button></div>
+		<div class="col-md-2">
+   		<button type="button" id="UpDateProfileBtn" class="btn btn-primary">Update Profile</button></div>
+   </div>
 	</div>
    </div>
 
@@ -22,19 +29,15 @@
 			    <div style={background-color:"white"}>
 				    <textarea rows="4" cols=30 id="cypher"></textarea><br>
 				    <input type="submit" value="Submit" id="reload">
-				    <input type="submit" value="Stabilize" id="stabilize">
+				    <!--<input type="submit" value="Stabilize" id="stabilize">-->
 			    </div>
 		    </div>
 	    </div>
     </div>
 
-   <script>
-   $(document).ready(function(){
-        draw();
-	});
 
-   </script>
-   <script type="text/javascript">
+<script src='https://cdn.neo4jlabs.com/neovis.js/v1.5.0/neovis.js'></script>
+  	 <script type="text/javascript">
 		// define config car
 		// instantiate neovis object
 		// draw
@@ -82,15 +85,19 @@
 						//"sizeCypher": "MATCH (n) WHERE id(n) = {id} MATCH (n)-[r]-() RETURN sum(r.weight) AS c"
 					},
 					"Event":{
-						"caption":"Location",
+						"caption":"title",
 						"size": "1",
 						"community": "5"
 					}
 				},
 				relationships: {
-					"interestedIn": {
+					"liked": {
 						"thickness": 1,
 						"caption": false
+					}
+					"postedEvent": {
+						"thickness": 1,
+						"caption":false
 					}
 				},
 				initial_cypher: "MATCH n=(:user), m=(:Event),p=(:User)-[:interestedIn]->(:Event) RETURN n,m,p"
@@ -99,7 +106,12 @@
 			viz.render();
 		};
 </script>
+<script>
+   $(document).ready(function(){
+        draw();
+	});
 
+</script>
 <script>
 	$("#reload").click(function() {
 		var cypher = $("#cypher").val();

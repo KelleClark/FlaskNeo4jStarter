@@ -25,12 +25,12 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 app.config['UPLOAD_FOLDER'] = dir_path + '/data/'
-app.config['IMG_FOLDER']= dir_path+'/static/img/'
+
 
 @app.route('/')
 def index():
-    logo_full_path = dir_path+'/static/img/clik.PNG'
-    return render_template("home/index.html", img_clik=logo_full_path)
+    logo_path=url_for('static', filename='img/clik.PNG')
+    return render_template("home/index.html", img_clik=logo_path)
 
 @app.route('/home/index', methods=['GET'])
 def home_index():
@@ -75,8 +75,8 @@ def register_post():
 def login_get():
     # Check if the user is already logged in.  if yes, redirect to profile page.
     if "usr" in session:
-        #return redirect(url_for("profile_get"))
-        return render_template("accounts/mypage.html")
+        return redirect(url_for("profile_get"))
+        #return render_template("accounts/mypage.html")
     else:
         return render_template("accounts/login.html")
 
@@ -98,8 +98,8 @@ def login_post():
     # Log in user and create a user session, redirect to user profile page.
     usr = request.form["email"]
     session["usr"] = usr
-    #return redirect(url_for("profile_get"))
-    return render_template("accounts/mypage.html")
+    return redirect(url_for("profile_get"))
+\
 
 
 @app.route('/accounts/profile', methods=['GET'])
@@ -125,18 +125,20 @@ def profile_post():
     else:
         return redirect(url_for("login_get"))
 
-#@app.route('/accounts/profile', methods=['GET'])
-#def profile_get():
+@app.route('/accounts/mypage2', methods=['GET'])
+def mypage():
     # Make sure the user has an active session.  If not, redirect to the login page.
-#    if "usr" in session:
-#        usr = session["usr"]
-#        session["usr"] = usr
-#        user_profile = get_profile(usr)
-#        return render_template("accounts/mypage.html", user_profile=user_profile)
-#    else:
-#        return redirect(url_for("login_get"))
+    #if "usr" in session:
+     #   usr = session["usr"]
+     #   session["usr"] = usr
+     #   user_profile = get_profile(usr)
+     #   return render_template("accounts/mypage.html", user_profile=user_profile)
+   # else:
+   #     return redirect(url_for("login_get"))
+    return render_template("accounts/mypage2.html")
 
-#@app.route('/accounts/profile', methods=['POST'])
+
+#@app.route('/accounts/mypage', methods=['POST'])
 #def profile_post():
     # Make sure the user has an active session.  If not, redirect to the login page.
 #    if "usr" in session:
