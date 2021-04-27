@@ -76,7 +76,7 @@ def login_get():
     # Check if the user is already logged in.  if yes, redirect to profile page.
     if "usr" in session:
         return redirect(url_for("profile_get"))
-        #return render_template("accounts/mypage.html")
+        #return render_template("accounts/mypage2.html")
     else:
         return render_template("accounts/login.html")
 
@@ -132,7 +132,7 @@ def mypage():
      #   usr = session["usr"]
      #   session["usr"] = usr
      #   user_profile = get_profile(usr)
-     #   return render_template("accounts/mypage.html", user_profile=user_profile)
+     #   return render_template("accounts/mypage2.html", user_profile=user_profile)
    # else:
    #     return redirect(url_for("login_get"))
     return render_template("accounts/mypage2.html")
@@ -145,7 +145,7 @@ def mypage():
 #        usr = session["usr"]
 #        session["usr"] = usr
 #        user_profile = get_profile(usr)
-#        return render_template("accounts/mypage.html", user_profile=user_profile)
+#        return render_template("accounts/mypage2.html", user_profile=user_profile)
 #    else:
 #        return redirect(url_for("login_get"))
 
